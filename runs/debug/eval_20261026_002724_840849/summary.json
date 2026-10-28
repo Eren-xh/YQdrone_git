@@ -1,0 +1,30 @@
+[
+  {
+    "episode": 1,
+    "seed": 100,
+    "steps": 1200,
+    "impact_seen": true,
+    "recovered": false,
+    "crashed": false,
+    "low_altitude": false,
+    "ground_contact": false,
+    "phase": "RECOVERY",
+    "end_reason": "time_limit",
+    "final_armor_contact": true,
+    "recovery_contact_fraction": 0.9791231732776617,
+    "recovery_elapsed_s": 4.785,
+    "impact_time_s": 1.215,
+    "final_position": [
+      0.8159879327809424,
+      0.09457174712098676,
+      0.4575718186024036
+    ],
+    "final_tilt_deg": 117.51786669667997,
+    "final_rate": 0.14212733666927116,
+    "final_speed": 0.0047295117149988375,
+    "final_thrust": 2.2740685953952005,
+    "max_rate": 16.519060897812313,
+    "min_altitude": 0.35000122327760613,
+    "reward": -1.2014161348342896
+  }
+]

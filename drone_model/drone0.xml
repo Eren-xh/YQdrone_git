@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XH1 single-drone MuJoCo model.
+
+  Mass budget supplied by the mechanical design:
+    body (battery, flight controller, frame, ...): 159 g
+    each motor + propeller:                         5 g
+    total:                                        179 g
+
+  Thrust, reaction torque, motor lag, ground effect and blade drag are
+  intentionally injected by the Python environment. This XML supplies the
+  rigid geometry, inertial properties, motor sites, IMU sensors, a ground
+  plane and a named armor target for contact detection.
+-->
+<mujoco model="xh1_impact_scene">
+  <compiler angle="radian" autolimits="true" inertiafromgeom="false"/>
+  <option timestep="0.001" integrator="implicitfast"
+          gravity="0 0 -9.81" density="1.225" viscosity="1.8e-5"
+          cone="elliptic"/>
+
+  <size nconmax="256" njmax="128"/>
+
+  <default>
+    <!-- Visual meshes never participate in contacts. -->
+    <default class="xh1_visual">
+      <geom contype="0" conaffinity="0" group="1"/>
+    </default>
+    <!-- Drone collision geoms collide with the armor target (bit 2) and a
+         future floor (bit 4). -->
+    <default class="xh1_collision">
+      <geom contype="1" conaffinity="5" group="3"
+            friction="0.8 0.02 0.01"
+            solref="0.005 1" solimp="0.90 0.95 0.01"/>
+    </default>
+  </default>
+
+  <asset>
+    <!-- The project currently has no separate low-poly collision meshes, so
+         the CAD meshes are retained for both display and collision. They can
+         be replaced by convex approximations later without changing names. -->
+    <mesh name="base_link_visual_mesh" file="meshes/base_link.STL"/>
+    <mesh name="base_link_collision_mesh" file="meshes/base_link.STL"/>
+    <mesh name="ra_visual_mesh" file="meshes/ra.STL"/>
+    <mesh name="ra_collision_mesh" file="meshes/ra.STL"/>
+    <mesh name="la_visual_mesh" file="meshes/la.STL"/>
+    <mesh name="la_collision_mesh" file="meshes/la.STL"/>
+    <mesh name="rb_visual_mesh" file="meshes/rb.STL"/>
+    <mesh name="rb_collision_mesh" file="meshes/rb.STL"/>
+    <mesh name="lb_visual_mesh" file="meshes/lb.STL"/>
+    <mesh name="lb_collision_mesh" file="meshes/lb.STL"/>
+  </asset>
+
+  <worldbody>
+    <!-- The default pose is 0.5 m above the world origin. The Gymnasium
+         environment will overwrite the freejoint qpos during reset. -->
+    <!-- CAD-to-world alignment: the STL rotor plane is CAD XZ with its
+         normal along CAD Y. Use +90 deg about CAD X: this rolls the complete
+         assembly by 180 deg relative to the previous -90 deg installation.
+         The IMU orientation below compensates this installation correction
+         so the flight frame stays x-forward, y-right, z-down. Python applies
+         rotor thrust along body -Z, which is world +Z at level. -->
+    <body name="drone0" pos="0 0 0.5"
+          euler="1.57079632679490 0 0">
+      <freejoint name="drone0_freejoint"/>
+
+      <!-- Base-link inertia from the user-supplied URDF. The URDF base-link
+           mass is 0.0981825069826134 kg; the six inertia components below are
+           scaled by 0.159/0.0981825069826134 to represent the specified
+           159 g body mass. This assumes the added body mass has the same COM
+           and spatial distribution as the exported base link. -->
+      <inertial mass="0.159"
+                pos="0.0629329245442759 -7.11768680834069e-07 -0.00277065256475653"
+                fullinertia="5.96238763377474e-05 8.54328048672897e-05 1.41425423378528e-04
+                             -1.15133912238629e-09 3.39501478870040e-07 3.37248566507350e-12"/>
+      <geom name="drone0_base_visual" class="xh1_visual"
+            type="mesh" mesh="base_link_visual_mesh"/>
+      <geom name="drone0_base_collision" class="xh1_collision"
+            type="mesh" mesh="base_link_collision_mesh"/>
+
+      <!-- Motor order used by the future Python mixer:
+           0=ra, 1=la, 2=rb, 3=lb. The site is at each CAD link origin;
+           update these local offsets if the propeller shaft center differs. -->
+      <body name="ra" pos="0.0368751820885869 -0.0143116764408675 -0.027500548121649"
+            euler="3.14159265358979 1.22983565169958 0">
+        <!-- Fixed CAD part: no hinge is used for an arm/motor mount. -->
+        <!-- The URDF child-link mass is 0.0981772515322827 kg. The six
+             components are scaled by 0.005/0.0981772515322827 for the
+             specified 5 g motor-plus-propeller mass. -->
+        <inertial mass="0.005"
+                  pos="-0.0172031802194192 -0.0170833979709927 -0.0337538255087986"
+                  fullinertia="5.50292159879803e-06 6.98114846734210e-06 3.34256161390978e-06
+                               5.73044496651315e-08 8.76892760993687e-07 -1.61533448617430e-07"/>
+        <geom name="ra_visual" class="xh1_visual"
+              type="mesh" mesh="ra_visual_mesh"/>
+        <geom name="ra_collision" class="xh1_collision"
+              type="mesh" mesh="ra_collision_mesh"/>
+        <site name="motor_0_site" pos="0 0 0"
+              euler="-1.57079632679490 0 0" size="0.004" group="5"/>
+      </body>
+
+      <body name="la" pos="0.0368751820885869 -0.0143116764408675 0.027499451878351"
+            euler="3.14159265358979 1.22983565169958 0">
+        <inertial mass="0.005"
+                  pos="0.0346306819596398 -0.0170833979709927 -0.015362231461454"
+                  fullinertia="5.50292159879803e-06 6.98114846734210e-06 3.34256161390978e-06
+                               5.73044496651315e-08 8.76892760993687e-07 -1.61533448617430e-07"/>
+        <geom name="la_visual" class="xh1_visual"
+              type="mesh" mesh="la_visual_mesh"/>
+        <geom name="la_collision" class="xh1_collision"
+              type="mesh" mesh="la_collision_mesh"/>
+        <site name="motor_1_site" pos="0 0 0"
+              euler="-1.57079632679490 0 0" size="0.004" group="5"/>
+      </body>
+
+      <body name="rb" pos="0.0918751820885868 -0.0143116764408675 -0.027500548121649"
+            euler="3.14159265358979 1.22983565169958 0">
+        <inertial mass="0.005"
+                  pos="-0.0355947742667638 -0.0170833979709927 0.0180800366702602"
+                  fullinertia="5.50292159879803e-06 6.98114846734210e-06 3.34256161390978e-06
+                               5.73044496651315e-08 8.76892760993687e-07 -1.61533448617430e-07"/>
+        <geom name="rb_visual" class="xh1_visual"
+              type="mesh" mesh="rb_visual_mesh"/>
+        <geom name="rb_collision" class="xh1_collision"
+              type="mesh" mesh="rb_collision_mesh"/>
+        <site name="motor_2_site" pos="0 0 0"
+              euler="-1.57079632679490 0 0" size="0.004" group="5"/>
+      </body>
+
+      <body name="lb" pos="0.0918751820885868 -0.0143116764408675 0.027499451878351"
+            euler="3.14159265358979 1.22983565169958 0">
+        <inertial mass="0.005"
+                  pos="0.0162390879122952 -0.0170833979709927 0.0364716307176048"
+                  fullinertia="5.50292159879803e-06 6.98114846734210e-06 3.34256161390978e-06
+                               5.73044496651315e-08 8.76892760993687e-07 -1.61533448617430e-07"/>
+        <geom name="lb_visual" class="xh1_visual"
+              type="mesh" mesh="lb_visual_mesh"/>
+        <geom name="lb_collision" class="xh1_collision"
+              type="mesh" mesh="lb_collision_mesh"/>
+        <site name="motor_3_site" pos="0 0 0"
+              euler="-1.57079632679490 0 0" size="0.004" group="5"/>
+      </body>
+
+      <!-- IMU and body-frame origin: the X-quad rotor center. The CAD root
+           origin is about 64.4 mm away from this point along CAD X and
+           14.3 mm along CAD Y. The requested right-handed flight frame is
+           x=forward/nose, y=right, z=down. At the level pose this frame is
+           Ry(pi) relative to MuJoCo's world (which is Z-up): body +X points
+           to world -X and body +Z points down. Python therefore applies
+           rotor thrust along body -Z. The local quaternion compensates the
+           corrected CAD installation; it must change together with the
+           drone0 mounting rotation above. -->
+      <site name="imu_site" pos="0.0643751820885869 -0.0143116764408675 0"
+            quat="0 0 0.707106781186548 -0.707106781186547"
+            size="0.003" group="5"/>
+
+      <!-- Placeholder camera for a future optical-flow observation. Optical
+           flow itself is computed in Python; this camera provides the image
+           source when a rendered sensor is enabled. -->
+      <camera name="flow_camera" pos="0 0 -0.06"
+              euler="3.14159265 0 0" fovy="90"/>
+    </body>
+
+    <!-- MuJoCo Z-up ground. Drone collision geoms use conaffinity bit 4;
+         this ground collision geom uses contype bit 4. -->
+    <geom name="ground_visual" type="plane" pos="0 0 0" size="5 5 0.1"
+          rgba="1 1 1 1" contype="0" conaffinity="0" group="1"/>
+    <geom name="ground_collision" type="plane" pos="0 0 0" size="5 5 0.1"
+          rgba="1 1 1 1" contype="4" conaffinity="1" group="3"
+          friction="0.8 0.02 0.01"
+          solref="0.005 1" solimp="0.90 0.95 0.01"/>
+
+    <!-- Static impact target. Its center is 0.35 m above ground and its
+         vertical plate is tilted -27.5 degrees about world Y. The drone
+         approaches from world +X, so this exposes the 117.5-degree obtuse
+         side to the impact. If the design
+         requirement means the lower edge rather than the center is 0.35 m,
+         raise this body's z position by the corresponding half-height. -->
+    <body name="armor_target" pos="0.80 0 0.35"
+          euler="0 -0.479965544298441 0">
+      <geom name="armor_visual" type="box" size="0.02 0.25 0.25"
+            rgba="0.12 0.35 0.95 1" contype="0" conaffinity="0" group="1"/>
+      <geom name="armor_collision" type="box" size="0.02 0.25 0.25"
+            rgba="0.12 0.35 0.95 0.25"
+            contype="2" conaffinity="1" group="3"
+            friction="0.8 0.02 0.01"
+            solref="0.005 1" solimp="0.90 0.95 0.01"/>
+    </body>
+  </worldbody>
+
+  <sensor>
+    <accelerometer name="imu_accel" site="imu_site"/>
+    <gyro name="imu_gyro" site="imu_site"/>
+    <framequat name="imu_quat" objtype="site" objname="imu_site"/>
+    <framepos name="imu_pos" objtype="site" objname="imu_site"/>
+    <!-- framelinvel is world-frame linear velocity at the IMU point;
+         Python converts it to body axes with R_body_to_world.T. -->
+    <framelinvel name="imu_vel" objtype="site" objname="imu_site"/>
+    <frameangvel name="imu_angvel" objtype="site" objname="imu_site"/>
+    <!-- Body-frame velocity is a useful optical-flow proxy before a camera
+         renderer is connected to the MAVLink sensor bridge. -->
+    <velocimeter name="flow_velocity_proxy" site="imu_site"/>
+  </sensor>
+</mujoco>

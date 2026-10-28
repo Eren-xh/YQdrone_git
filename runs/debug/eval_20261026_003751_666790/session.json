@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-26T00:37:51.666790+08:00",
+  "model": "C:\\Users\\lenovo\\Desktop\\bisai\\rm\\drone\\mujoco\\drone_xh1\\runs\\xh1_ppo_bodyframe_fixed.zip",
+  "vecnormalize": "C:\\Users\\lenovo\\Desktop\\bisai\\rm\\drone\\mujoco\\drone_xh1\\runs\\xh1_ppo_bodyframe_fixed_vecnormalize.pkl",
+  "episodes": 5,
+  "seed": 100,
+  "control_hz": 200,
+  "control_dt": 0.005,
+  "max_episode_steps": 1200,
+  "body_frame": "FRD: X 前 / Y 右 / Z 下；世界 Z 向上",
+  "observations": [
+    {
+      "key": "fx",
+      "label": "比力 X",
+      "unit": "m/s²"
+    },
+    {
+      "key": "fy",
+      "label": "比力 Y",
+      "unit": "m/s²"
+    },
+    {
+      "key": "fz",
+      "label": "比力 Z",
+      "unit": "m/s²"
+    },
+    {
+      "key": "p",
+      "label": "角速度 p / roll",
+      "unit": "rad/s"
+    },
+    {
+      "key": "q",
+      "label": "角速度 q / pitch",
+      "unit": "rad/s"
+    },
+    {
+      "key": "r",
+      "label": "角速度 r / yaw",
+      "unit": "rad/s"
+    },
+    {
+      "key": "gx",
+      "label": "重力方向 X",
+      "unit": "1"
+    },
+    {
+      "key": "gy",
+      "label": "重力方向 Y",
+      "unit": "1"
+    },
+    {
+      "key": "gz",
+      "label": "重力方向 Z",
+      "unit": "1"
+    },
+    {
+      "key": "prev_T",
+      "label": "上一步 PPO 动作 T",
+      "unit": "1"
+    },
+    {
+      "key": "prev_p",
+      "label": "上一步 PPO 动作 p",
+      "unit": "1"
+    },
+    {
+      "key": "prev_q",
+      "label": "上一步 PPO 动作 q",
+      "unit": "1"
+    },
+    {
+      "key": "prev_r",
+      "label": "上一步 PPO 动作 r",
+      "unit": "1"
+    }
+  ],
+  "norm_obs": true,
+  "clip_obs": 10.0,
+  "max_total_thrust": 2.631894506957162,
+  "hover_thrust": 1.75599,
+  "rate_limit": [
+    10.0,
+    10.0,
+    8.0
+  ],
+  "max_rpm": 20000.0,
+  "max_motor_thrust": 0.6579736267392905,
+  "recovery_thresholds": {
+    "gravity_z_min": 0.94,
+    "rate_norm_max": 1.0,
+    "speed_max": 2.5,
+    "altitude_min": 0.18
+  },
+  "recovery_hold_steps": 20,
+  "reference_rotation": [
+    [
+      -1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      4.773959005888173e-15
+    ],
+    [
+      0.0,
+      4.773959005888173e-15,
+      -1.0
+    ]
+  ]
+}

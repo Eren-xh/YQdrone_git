@@ -1,0 +1,508 @@
+{
+  "evaluated_at": "2026-10-25T02:03:31.706534+08:00",
+  "model_path": "C:\\Users\\lenovo\\Desktop\\bisai\\rm\\drone\\mujoco\\drone_xh1\\runs\\xh1_ppo_bodyframe_fixed.zip",
+  "model_sha256": "1ae2b3b0824acd9d5049d114aaaa0f6bd3d6919f75f7baad02436782208d07cd",
+  "normalizer_sha256": "8468cc6a31e71e3051e05095309c3ee5dbe667128cc3eb6d2c0eff3be152f5a5",
+  "model_saved_training_steps": 1000448,
+  "policy_architecture": {
+    "pi": [
+      128,
+      128
+    ],
+    "vf": [
+      128,
+      128
+    ]
+  },
+  "seed": 100,
+  "deterministic_policy": true,
+  "armor_collision_bits_throughout": [
+    2,
+    1
+  ],
+  "training_environment_source_available_in_checkpoint": false,
+  "ctrl_freq_hz": 200,
+  "sim_freq_hz": 1000,
+  "episode_steps": 1200,
+  "recovery_contact_fraction": 0.9833506763787722,
+  "note": "Current fixed initial condition: changing seeds 100..104 repeats the same trajectory. Requested PPO commands are ignored during APPROACH. This report evaluates existing weights; no retraining was performed.",
+  "trace": [
+    {
+      "step_zero_based": 0,
+      "time_s": 0.005,
+      "phase": "APPROACH",
+      "position_m": [
+        1.5999985895543134,
+        -4.201611197664944e-06,
+        0.3500012219385743
+      ],
+      "tilt_deg": 0.017361999713472777,
+      "angular_rate_body_rad_s": [
+        -0.11492651955925857,
+        -0.038516256742039685,
+        -0.0002816096213331763
+      ],
+      "speed_m_s": 0.0018396509240315765,
+      "policy_action": [
+        0.32926806807518005,
+        -0.6935936808586121,
+        -0.3122571110725403,
+        -0.18089860677719116
+      ],
+      "requested_total_thrust_N": 1.7492466633203125,
+      "requested_rates_body_rad_s": [
+        -6.935936808586121,
+        -3.122571110725403,
+        -1.4471888542175293
+      ],
+      "applied_total_thrust_N": 1.7582045686120518,
+      "armor_contact": false,
+      "armor_contact_force_N": 0.0,
+      "contacts": [],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 238,
+      "time_s": 1.195,
+      "phase": "APPROACH",
+      "position_m": [
+        0.8952757476858176,
+        -0.05491357942200472,
+        0.3681863957467286
+      ],
+      "tilt_deg": 10.48096786933052,
+      "angular_rate_body_rad_s": [
+        -0.004565008723734564,
+        -0.003277129603281115,
+        0.011558676403311999
+      ],
+      "speed_m_s": 1.492589468512065,
+      "policy_action": [
+        0.07646295428276062,
+        -0.7674015760421753,
+        -1.0,
+        1.0
+      ],
+      "requested_total_thrust_N": 1.416568468159838,
+      "requested_rates_body_rad_s": [
+        -7.674015760421753,
+        -10.0,
+        8.0
+      ],
+      "applied_total_thrust_N": 1.6971019997144994,
+      "armor_contact": false,
+      "armor_contact_force_N": 0.0,
+      "contacts": [],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 239,
+      "time_s": 1.2,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8900480298919378,
+        -0.05500317429249514,
+        0.3686058862059458
+      ],
+      "tilt_deg": 11.17152306551792,
+      "angular_rate_body_rad_s": [
+        -0.1510427247215913,
+        -5.177621511780994,
+        0.6666340713241954
+      ],
+      "speed_m_s": 0.5815598622005282,
+      "policy_action": [
+        0.07640466094017029,
+        -0.764510452747345,
+        -1.0,
+        1.0
+      ],
+      "requested_total_thrust_N": 1.4164917571957603,
+      "requested_rates_body_rad_s": [
+        -7.64510452747345,
+        -10.0,
+        8.0
+      ],
+      "applied_total_thrust_N": 1.6962418269321549,
+      "armor_contact": true,
+      "armor_contact_force_N": 28.520380688309693,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 240,
+      "time_s": 1.205,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8888230203823564,
+        -0.05526068747000057,
+        0.3705808596719485
+      ],
+      "tilt_deg": 12.935149100643054,
+      "angular_rate_body_rad_s": [
+        -0.28621453038690453,
+        -6.438530317642375,
+        0.8494692225915765
+      ],
+      "speed_m_s": 0.46044238057445996,
+      "policy_action": [
+        0.34581685066223145,
+        -0.6094275116920471,
+        1.0,
+        1.0
+      ],
+      "requested_total_thrust_N": 1.771023988314157,
+      "requested_rates_body_rad_s": [
+        -6.094275116920471,
+        10.0,
+        8.0
+      ],
+      "applied_total_thrust_N": 1.6102961945685308,
+      "armor_contact": true,
+      "armor_contact_force_N": 1.2217896579658398,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 250,
+      "time_s": 1.2550000000000001,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8773057526313546,
+        -0.057826360436321375,
+        0.39080673307410474
+      ],
+      "tilt_deg": 28.222308573949494,
+      "angular_rate_body_rad_s": [
+        0.21904038307741786,
+        -3.9825954504453707,
+        0.3138364836833422
+      ],
+      "speed_m_s": 0.5059487800932512,
+      "policy_action": [
+        1.0,
+        0.3440115451812744,
+        1.0,
+        1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        3.440115451812744,
+        10.0,
+        8.0
+      ],
+      "applied_total_thrust_N": 1.9458335257483097,
+      "armor_contact": false,
+      "armor_contact_force_N": 0.0,
+      "contacts": [],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 280,
+      "time_s": 1.405,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8163778898104874,
+        -0.056229064024325974,
+        0.4367685209780125
+      ],
+      "tilt_deg": 89.47626620533187,
+      "angular_rate_body_rad_s": [
+        0.03673020700048724,
+        -10.487393905924803,
+        -0.2656917189923032
+      ],
+      "speed_m_s": 0.6074836880305118,
+      "policy_action": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        10.0,
+        10.0,
+        8.0
+      ],
+      "applied_total_thrust_N": 1.9902223262177146,
+      "armor_contact": true,
+      "armor_contact_force_N": 1.023824616031665,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 300,
+      "time_s": 1.5050000000000001,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.7875710203432835,
+        -0.05503118022482497,
+        0.4317319106523581
+      ],
+      "tilt_deg": 117.4936023653511,
+      "angular_rate_body_rad_s": [
+        -0.7687277859613384,
+        0.3146279644228695,
+        -0.4299810205624082
+      ],
+      "speed_m_s": 0.047801106724903536,
+      "policy_action": [
+        1.0,
+        1.0,
+        -0.03772144019603729,
+        -1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        10.0,
+        -0.3772144019603729,
+        -8.0
+      ],
+      "applied_total_thrust_N": 2.119992678279596,
+      "armor_contact": true,
+      "armor_contact_force_N": 4.478731348035032,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 400,
+      "time_s": 2.005,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.7973726152417523,
+        -0.05374441175522491,
+        0.412881028458705
+      ],
+      "tilt_deg": 117.5512996990484,
+      "angular_rate_body_rad_s": [
+        0.03903284184090038,
+        -1.0293802572314132,
+        -0.16876586015214964
+      ],
+      "speed_m_s": 0.05100684672586465,
+      "policy_action": [
+        1.0,
+        0.735256016254425,
+        0.04001854360103607,
+        -1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        7.3525601625442505,
+        0.4001854360103607,
+        -8.0
+      ],
+      "applied_total_thrust_N": 2.1444302606547616,
+      "armor_contact": true,
+      "armor_contact_force_N": 2.565926086493235,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 600,
+      "time_s": 3.005,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8186576946489639,
+        -0.05242506904818899,
+        0.3719175950058316
+      ],
+      "tilt_deg": 117.49302863048439,
+      "angular_rate_body_rad_s": [
+        -1.2456498443254578,
+        -0.2353589488368743,
+        0.02127642194422208
+      ],
+      "speed_m_s": 0.060470676246032994,
+      "policy_action": [
+        1.0,
+        1.0,
+        0.6650341749191284,
+        -1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        10.0,
+        6.650341749191284,
+        -8.0
+      ],
+      "applied_total_thrust_N": 2.1242344936996256,
+      "armor_contact": true,
+      "armor_contact_force_N": 5.339194823581018,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 800,
+      "time_s": 4.005,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8399625517280744,
+        -0.0531680142839058,
+        0.3309756672838894
+      ],
+      "tilt_deg": 117.46094046318056,
+      "angular_rate_body_rad_s": [
+        0.6723371136736753,
+        0.2529269404083334,
+        -0.0789085800228865
+      ],
+      "speed_m_s": 0.038705236869009396,
+      "policy_action": [
+        1.0,
+        1.0,
+        0.41391560435295105,
+        -1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        10.0,
+        4.1391560435295105,
+        -8.0
+      ],
+      "applied_total_thrust_N": 2.1237672346810452,
+      "armor_contact": true,
+      "armor_contact_force_N": 5.809771745095431,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 1000,
+      "time_s": 5.005,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8606265877723904,
+        -0.053463724049346656,
+        0.29110766829496887
+      ],
+      "tilt_deg": 117.45441754974425,
+      "angular_rate_body_rad_s": [
+        0.1376296328823306,
+        0.6671703513471877,
+        0.07378895832335758
+      ],
+      "speed_m_s": 0.04242568513374904,
+      "policy_action": [
+        1.0,
+        1.0,
+        -0.5428439378738403,
+        -1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        10.0,
+        -5.428439378738403,
+        -8.0
+      ],
+      "applied_total_thrust_N": 2.2053352621914053,
+      "armor_contact": true,
+      "armor_contact_force_N": 4.415438990565855,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": false
+    },
+    {
+      "step_zero_based": 1199,
+      "time_s": 6.0,
+      "phase": "RECOVERY",
+      "position_m": [
+        0.8818076765766205,
+        -0.05321107826143923,
+        0.2507486292518307
+      ],
+      "tilt_deg": 117.44704108107138,
+      "angular_rate_body_rad_s": [
+        -0.9570570443750017,
+        -0.39359996758813465,
+        -0.1618096549195756
+      ],
+      "speed_m_s": 0.043136772242792026,
+      "policy_action": [
+        1.0,
+        0.18374322354793549,
+        1.0,
+        -1.0
+      ],
+      "requested_total_thrust_N": 2.631894506957162,
+      "requested_rates_body_rad_s": [
+        1.8374322354793549,
+        10.0,
+        -8.0
+      ],
+      "applied_total_thrust_N": 2.147056860808948,
+      "armor_contact": true,
+      "armor_contact_force_N": 4.32558139094497,
+      "contacts": [
+        [
+          "armor_collision",
+          "drone0_base_collision"
+        ]
+      ],
+      "recovered": false,
+      "crashed": false,
+      "time_limit": true
+    }
+  ]
+}
